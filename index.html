@@ -30,8 +30,8 @@
             <a class="nav-link" href="pages/referencias.html">Referências</a>
         </li>
     </ul>
-    <div style="width: 100%; display: flex; align-items: center; justify-content: center; margin: 1em;">
-        <div class="card mb-3" style="width: 50%;">
+    <div style="width: 100%; display: flex; align-items: center; justify-content: center; margin: 1em 0;">
+        <div class="card mb-3" style="width: 90%; max-width: 1000px;">
             <img src="src/QABluetooth.png" class="card-img-top">
             <div class="card-body">
                 <h4 class="card-title">Qualidade do áudio Bluetooth: codecs, transmissão e equipamentos</h4>
@@ -56,7 +56,8 @@
                 Os codecs determinam como o áudio será comprimido e transmitido. Cada tecnologia apresenta
                 características próprias de qualidade, eficiência e compatibilidade.<br>
 
-                <table class="table">
+                <div>
+                <table class="table" style="width: 100%; table-layout: fixed;">
                     <tbody>
                         <tr class="table-active">
                             <td>Codec</td>
@@ -100,7 +101,7 @@
                         </tr>
 
                     </tbody>
-                </table>
+                </table></div>
                 <h3>Principais diferenças:</h3>
                 - SBC: possui ampla compatibilidade, sendo o codec obrigatório para áudio A2DP.<br>
                 - AAC: oferece boa compressão e é bastante utilizado em dispositivos Apple.<br>
@@ -119,7 +120,7 @@
                 - Redução da taxa de transmissão.<br>
 
                 <h3>Equipamentos recomendados</h3>
-                <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <img src="src/foneBluetooth.jpg" class="card-img" alt="...">
