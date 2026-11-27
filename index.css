@@ -1,0 +1,453 @@
+/* ===== BASE ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000000;
+    color: #f5f5f5;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container-site {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===== TOPO / MENU ===== */
+.topo {
+    background-color: #000000;
+    padding: 0.5rem 1rem 0;
+}
+
+.abas-preto.nav-tabs {
+    border-bottom: 1px solid #6c757d;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.logo-nav {
+    display: block;
+    width: 70px;
+    height: auto;
+    margin: 0 1rem 0.25rem 0.25rem;
+}
+
+.abas-preto .nav-link {
+    color: #ffffff;
+    border: 1px solid transparent;
+    margin-bottom: -1px;
+    padding: 0.6rem 0.25rem;
+    font-size: 0.9rem;
+}
+
+.abas-preto .nav-link:hover {
+    color: #ffc107;
+    border-color: #495057 #495057 transparent;
+}
+
+.abas-preto .nav-link.active {
+    color: #ffc107;
+    background-color: #000000;
+    border-color: #6c757d #6c757d #000000;
+}
+
+/* Celular: logo em cima, abas embaixo */
+.abas-preto .nav-item:first-child {
+    flex: 0 0 100%;
+    text-align: center;
+}
+
+.abas-preto .nav-item:not(:first-child) {
+    flex: 1 1 33.33%;
+    text-align: center;
+}
+
+.logo-nav {
+    margin: 0 auto 0.5rem;
+}
+
+/* ===== BANNER ===== */
+.banner-inicio {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+}
+
+/* ===== DESTAQUES ===== */
+.destaques {
+    padding: 1.5rem 0;
+}
+
+.destaques-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+#carouselBeat {
+    width: 100%;
+}
+
+#carouselBeat .carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.apresentacao {
+    text-align: center;
+}
+
+.conteudos-label {
+    color: #ff9d22;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(255, 138, 0, 0.28);
+    margin-bottom: 0.5rem;
+}
+
+.conteudosec-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #e6e6e6;
+    margin-bottom: 1rem;
+}
+
+.ver-mais {
+    color: #ff8a00;
+    background-color: #080808;
+    border: 1px solid #ff8a00;
+    border-radius: 50px;
+    padding: 8px 18px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.ver-mais:hover {
+    background-color: #ff8a00;
+    color: #000;
+    box-shadow: 0 0 12px rgba(255, 138, 0, 0.3);
+}
+
+/* ===== CARDS ===== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.conteudo-card {
+    background: #090909;
+    border: 3px solid #ff8a00;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudo-card img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    display: block;
+}
+
+.conteudo-card-corpo {
+    margin-top: -75px;
+    position: relative;
+    padding: 2.5rem 0.9rem 0.8rem;
+    background: linear-gradient(to bottom, transparent, rgba(9, 9, 9, 0.92) 45%);
+}
+
+.conteudo-card-titulo {
+    font-family: 'Manrope', sans-serif;
+    color: #ff8a00;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.conteudo-card-texto {
+    color: #d0d0d0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    margin-bottom: 9px;
+}
+
+.btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #ff8a00;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-solid:hover {
+    color: #ffb347;
+}
+
+/* ===== MATERIAL TÉCNICO ===== */
+.material-tecnico {
+    padding-bottom: 1.5rem;
+}
+
+.material-tecnico-label {
+    color: #ff9d22;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(255, 138, 0, 0.28);
+}
+
+.card-material-tecnico {
+    background-color: #090909;
+    color: #f5f5f5;
+    border: 1px solid #ff8a00;
+    border-radius: 16px;
+    box-shadow: 0 0 22px rgba(255, 138, 0, 0.13);
+    overflow: hidden;
+}
+
+.card-material-tecnico .card-body {
+    background-color: transparent;
+    color: #f5f5f5;
+    padding: 1rem;
+}
+
+.card-material-tecnico .card-img-top {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+}
+
+.card-material-tecnico h1,
+.card-material-tecnico h2,
+.card-material-tecnico h3,
+.card-material-tecnico h4,
+.card-material-tecnico h5,
+.card-material-tecnico p,
+.card-material-tecnico li,
+.card-material-tecnico strong {
+    color: #f5f5f5;
+}
+
+.card-material-tecnico h1 {
+    font-size: 1.4rem;
+}
+
+.card-material-tecnico .card-text {
+    line-height: 1.7;
+    overflow-wrap: break-word;
+}
+
+.card-material-tecnico .text-muted {
+    color: #b8b8b8 !important;
+}
+
+.card-material-tecnico a {
+    color: #ffb347;
+}
+
+.card-material-tecnico .text-primary {
+    color: #ff8a00 !important;
+}
+
+/* Tabela */
+.card-material-tecnico .table {
+    --bs-table-bg: #101010;
+    --bs-table-color: #fff;
+    --bs-table-border-color: rgba(255, 138, 0, 0.55);
+    min-width: 520px;
+}
+
+.card-material-tecnico .table td {
+    background-color: #101010;
+    color: #fff;
+    border-color: rgba(255, 138, 0, 0.45);
+}
+
+.card-material-tecnico .table .table-active td {
+    background-color: #2a1908;
+    color: #ffb347;
+}
+
+/* Cards internos */
+.card-material-tecnico .card {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid rgba(255, 138, 0, 0.75);
+    border-radius: 12px;
+}
+
+.equipamentos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.equipamentos .card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.referencias {
+    margin-top: 2rem;
+}
+
+.referencias li {
+    word-break: break-word;
+}
+
+/* ===== RODAPÉ ===== */
+.rodape {
+    border-top: 1px solid rgba(255, 138, 0, 0.45);
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #b8b8b8;
+    font-size: 0.85rem;
+}
+
+/* ===== TELAS MAIORES ===== */
+
+/* A partir de 576px */
+@media (min-width: 576px) {
+    .abas-preto .nav-item:first-child,
+    .abas-preto .nav-item:not(:first-child) {
+        flex: none;
+        text-align: left;
+    }
+
+    .logo-nav {
+        width: 94px;
+        margin: 0 1rem 0.25rem 0.25rem;
+    }
+
+    .abas-preto .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .cards-grid,
+    .equipamentos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container-site,
+    .topo {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+/* A partir de 768px */
+@media (min-width: 768px) {
+    .destaques {
+        padding: 2rem 0;
+    }
+
+    .conteudos-label {
+        font-size: 1.25rem;
+    }
+
+    .conteudosec-label {
+        font-size: 1.25rem;
+    }
+
+    .card-material-tecnico .card-body {
+        padding: 1.5rem;
+    }
+
+    .card-material-tecnico h1 {
+        font-size: 1.7rem;
+    }
+}
+
+/* A partir de 992px */
+@media (min-width: 992px) {
+    .container-site,
+    .topo {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .destaques-grid {
+        gap: 2rem;
+        align-items: stretch;
+    }
+
+    .destaques-grid > div:last-child {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .destaques-grid .cards-grid {
+        margin-top: 0;
+    }
+
+    .apresentacao {
+        text-align: left;
+    }
+
+    .conteudos-label {
+        font-size: 1.5rem;
+    }
+
+    .conteudosec-label {
+        font-size: 1.4rem;
+    }
+
+    .equipamentos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .material-tecnico .container-site {
+        max-width: 971px;
+    }
+
+    .card-material-tecnico h1 {
+        font-size: 2rem;
+    }
+}
+
+/* A partir de 1200px */
+@media (min-width: 1200px) {
+    .destaques {
+        padding: 3rem 0;
+    }
+
+    .material-tecnico {
+        padding-bottom: 3rem;
+    }
+}

@@ -6,571 +6,282 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Beat — Do Vinil ao Streaming</title>
 
-    <!-- Ícone de disco de vinil na aba da página -->
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23111111'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%232d2d2d' stroke-width='1.5'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%232d2d2d' stroke-width='1.5'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%232d2d2d' stroke-width='1.5'/%3E%3Cpath d='M16 14 A24 24 0 0 1 42 10 L32 32 Z' fill='%23ffffff' fill-opacity='0.14'/%3E%3Ccircle cx='32' cy='32' r='10' fill='%23f5b800'/%3E%3Ccircle cx='32' cy='32' r='3' fill='%23111111'/%3E%3C/svg%3E">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-        #carouselBeat {
-            width: 100%;
-        }
-
-        #carouselBeat .carousel-item img {
-            width: 100%;
-            max-height: 500px;
-            object-fit: cover;
-        }
-
-        /* Barra de abas no fundo preto com continuidade na aba selecionada */
-        .abas-preto.nav-tabs {
-            border-bottom: 1px solid #6c757d;
-        }
-
-        .abas-preto .nav-link {
-            color: #ffffff;
-            border: 1px solid transparent;
-            margin-bottom: -1px;
-        }
-
-        .abas-preto .nav-link:hover {
-            color: #ffc107;
-            border-color: #495057 #495057 transparent;
-        }
-
-        .abas-preto .nav-link.active {
-            color: #ffc107;
-            background-color: #000000;
-            border-color: #6c757d #6c757d #000000;
-        }
-
-        body {
-            background-color: #000000;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        .tron-bg {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000000;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        nav,
-        section,
-        main {
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-material-tecnico {
-            background-color: #090909;
-            color: #f5f5f5;
-            border: 1px solid #ff8a00;
-            border-radius: 16px;
-            box-shadow: 0 0 22px rgba(255, 138, 0, 0.13);
-        }
-
-        .card-material-tecnico .card-body {
-            background-color: transparent;
-            color: #f5f5f5;
-        }
-
-        .card-material-tecnico h1,
-        .card-material-tecnico h2,
-        .card-material-tecnico h3,
-        .card-material-tecnico h4,
-        .card-material-tecnico h5,
-        .card-material-tecnico p,
-        .card-material-tecnico li,
-        .card-material-tecnico strong {
-            color: #f5f5f5;
-        }
-
-        .card-material-tecnico .text-muted {
-            color: #b8b8b8 !important;
-        }
-
-        .card-material-tecnico .table {
-            --bs-table-bg: #101010;
-            --bs-table-color: #fff;
-            --bs-table-border-color: rgba(255, 138, 0, 0.55);
-            --bs-table-active-bg: #2a1908;
-            --bs-table-active-color: #ffb347;
-        }
-
-        .card-material-tecnico .table td {
-            background-color: #101010;
-            color: #fff;
-            border-color: rgba(255, 138, 0, 0.45);
-        }
-
-        .card-material-tecnico .table .table-active td {
-            background-color: #2a1908;
-            color: #ffb347;
-        }
-
-        .card-material-tecnico .card {
-            background-color: #111;
-            color: white;
-            border: 1px solid rgba(255, 138, 0, 0.75);
-            border-radius: 12px;
-        }
-
-        .material-tecnico-label {
-            color: #ff9d22;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            text-shadow: 0 0 12px rgba(255, 138, 0, 0.28);
-        }
-
-        .conteudos-label {
-            color: #ff9d22;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            text-shadow: 0 0 12px rgba(255, 138, 0, 0.28);
-        }
-
-        .conteudosec-label {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #c4c4c4;
-        }
-
-        .ver-mais {
-            color: #ff8a00;
-            background-color: #080808;
-            border: 1px solid #ff8a00;
-            border-radius: 50px;
-            padding: 8px 18px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .ver-mais:hover {
-            background-color: #ff8a00;
-            color: #000;
-            box-shadow: 0 0 12px rgba(255, 138, 0, 0.3);
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
-
-/* CONTAINER */
-.cards-conteudos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5em;
-    padding: 1.5em 2em;
-    flex-wrap: wrap;
-    font-family: 'DM Sans', sans-serif;
-}
-
-/* TEXTO DE APRESENTAÇÃO */
-.card0 {
-    min-width: 220px;
-    margin-inline: 1em;
-    color: white;
-}
-
-.conteudos-label {
-    color: #ff8a00;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    margin-bottom: 8px;
-}
-
-.conteudosec-label {
-    font-family: 'Manrope', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 15px;
-}
-
-/* CARDS */
-.card1,
-.card2 {
-    width: 290px;
-    margin: 0;
-    background: #090909;
-    border: 1px solid #ff8a00;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, .4);
-}
-
-/* IMAGENS */
-.card1 .card-img-top,
-.card2 .card-img-top {
-    width: 100%;
-    height: 185px;
-    object-fit: cover;
-    display: block;
-}
-
-/* PARTE DA ESCRITA */
-.card1 .card,
-.card2 .card {
-    width: 100%;
-    margin-top: -75px;
-    position: relative;
-    background: rgba(9, 9, 9, .88);
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-/* ESPAÇAMENTO DO TEXTO */
-.card1 .card-body,
-.card2 .card-body {
-    padding: 12px 14px;
-    background: transparent;
-}
-
-/* TÍTULOS */
-.card1 .card-title,
-.card2 .card-title {
-    font-family: 'Manrope', sans-serif;
-    color: #ff8a00;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-/* TEXTOS SECUNDÁRIOS */
-.card1 .card-text,
-.card2 .card-text {
-    color: #d0d0d0;
-    font-family: 'DM Sans', sans-serif;
-    font-size: .88rem;
-    line-height: 1.45;
-    margin-bottom: 9px;
-}
-
-/* BOTÃO */
-.btn-solid {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: #ff8a00;
-    background: transparent;
-    border: none;
-    padding: 2px 0;
-    font-size: .8rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.btn-solid:hover {
-    color: #ffb347;
-}
-
-/* CELULAR */
-@media (max-width: 768px) {
-    .cards-conteudos {
-        gap: 2em;
-        padding: 1em;
-    }
-
-    .card0 {
-        width: 100%;
-        text-align: center;
-    }
-
-    .card1,
-    .card2 {
-        width: min(290px, 100%);
-    }
-}
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
-<body class="fundo-tron text-light">
+<body>
 
+    <header class="topo">
+        <nav aria-label="Navegação principal">
+            <ul class="nav nav-tabs abas-preto">
+                <li class="nav-item">
+                    <img class="logo-nav" src="./src/LogoBEATRetrô.png" alt="Logo BEAT Retrô">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/atividade.html">Atividade</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/materiais.html">Materiais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/historia.html">História</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/contato.html">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/equipe.html">Equipe</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Menu de navegação -->
-    <nav class="bg-black pt-2 px-2">
-        <ul class="nav nav-tabs abas-preto align-items-end">
-            <li class="nav-item pb-1">
-                <img src="./src/LogoBEATRetrô.png" alt="Logo BEAT Retrô"
-                    style="width: 94px; height: 54px; margin: 0 1em 0 0.5em;">
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Início</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pages/atividade.html">Atividade</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pages/materiais.html">Materiais</a>
-            <li class="nav-item">
-                <a class="nav-link" href="pages/historia.html">História</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pages/contato.html">Contato</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pages/equipe.html">Equipe</a>
-            </li>
-        </ul>
-    </nav>
+    <img class="banner-inicio" src="src/BannerInicio.png" alt="Banner do projeto BEAT — Do Vinil ao Streaming">
 
-    <img src="src/BannerInicio.png" style="width: 100%;">
+    <section class="destaques" aria-label="Destaques">
+        <div class="container-site destaques-grid">
 
+            <div id="carouselBeat" class="carousel slide rounded overflow-hidden shadow-sm bg-dark"
+                data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
 
-    <!-- Carrossel de imagens -->
-    <section class="my-4" style="width: 90%; margin-inline: auto;">
-
-        <div id="carouselBeat" class="carousel slide rounded overflow-hidden shadow-sm bg-dark" data-bs-ride="carousel"
-            data-bs-interval="3000" data-bs-pause="false">
-
-
-            <!-- Imagens -->
-            <div class="carousel-inner">
-
-                <div class="carousel-item active">
-                    <img src="./src/bannerCarrossel.png" class="d-block w-100" alt="Imagem 1">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./src/bannerCarrossel.png" class="d-block w-100" alt="Imagem 1 do carrossel">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./src/NuctiNuccienCarrossel.png" class="d-block w-100" alt="Imagem 2 do carrossel">
+                    </div>
                 </div>
 
-                <div class="carousel-item">
-                    <img src="./src/NuctiNuccienCarrossel.png" class="d-block w-100" alt="Imagem 2">
-                </div>
-
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselBeat"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselBeat"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
             </div>
 
-            <!-- Controles -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselBeat" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
+            <div>
+                <div class="apresentacao">
+                    <p class="conteudos-label">* Conteúdos</p>
+                    <p class="conteudosec-label">Explore matérias que te conectam ao universo da música.</p>
+                    <a class="ver-mais" href="#conteudosInicio">Ver Todos <i class="bi bi-arrow-right"></i></a>
+                </div>
 
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselBeat" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Próximo</span>
-            </button>
+                <div class="cards-grid">
+                    <article class="conteudo-card">
+                        <img src="src/lermaisbluetooth.jpg" alt="Fone de ouvido Bluetooth">
+                        <div class="conteudo-card-corpo">
+                            <h4 class="conteudo-card-titulo">Bluetooth</h4>
+                            <p class="conteudo-card-texto">Saber mais sobre conexão sem fio?</p>
+                            <a href="#bluetoothconteudo" class="btn-solid">Ler mais <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="conteudo-card">
+                        <img src="src/lermaisbluetooth.jpg" alt="Fone de ouvido Bluetooth">
+                        <div class="conteudo-card-corpo">
+                            <h4 class="conteudo-card-titulo">Do sulco ao Bit</h4>
+                            <p class="conteudo-card-texto">Descubra a diferença!</p>
+                            <a href="#sulcoconteudo" class="btn-solid">Ler mais <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="conteudo-card">
+                        <img src="src/lermaismateriais.jpg" alt="Materiais extras do projeto">
+                        <div class="conteudo-card-corpo">
+                            <h4 class="conteudo-card-titulo">Material Extra</h4>
+                            <p class="conteudo-card-texto">Explore materiais.</p>
+                            <a href="pages/materiais.html" class="btn-solid">Ler mais <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
 
         </div>
     </section>
 
-    <div style="padding-inline: 2em; display: flex; flex-direction: row;gap:1em;">
-        <section class="card0" style="margin-inline: 2em;">
-            <p class="conteudos-label">* Conteúdos</p>
-            <p class="conteudosec-label">Explore matérias<br> que te conectam <br>ao universo da música.</p>
-            <a class="ver-mais" href="#conteudosInicio">Ver Todos <i class="bi bi-arrow-right"></i> </a>
-        </section>
-        <section class="card1" style="border: 5px solid #ff6600;border-radius: 1em;">
-            <section class="card" style="max-width: 320px">
-                <img src="src/lermaisbluetooth.jpg" class="card-img-top" alt="...">
+    <main class="material-tecnico" id="conteudosInicio">
+        <div class="container-site">
+            <p class="material-tecnico-label mb-3">MATERIAL TÉCNICO</p>
+
+            <article class="card card-material-tecnico shadow-sm mb-4" id="bluetoothconteudo">
+                <img src="src/QABluetooth.png" class="card-img-top"
+                    alt="Qualidade do áudio Bluetooth: codecs, transmissão e equipamentos">
                 <div class="card-body">
-                    <h4 class="card-title">Bluetooth</h4>
-                    <p class="card-text">Saber mais sobre conexão sem fio?</p>
-                    <a href="#bluetoothconteudo" class="btn-solid theme-primary">Ler mais<i class="bi bi-arrow-right"></i></a>
-                </div>
-            </section>
-        </section>
-        <section class="card2" style="border: 5px solid #ff6600;border-radius: 1em;">
-            <section class="card" style="max-width: 320px">
-                <img src="src/lermaismateriais.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h4 class="card-title">Material Extra</h4>
-                    <p class="card-text">Explore materiais.</p>
-                    <a href="pages/materiais.html" class="btn-solid theme-primary">Ler mais<i class="bi bi-arrow-right"></i></a>
-                </div>
-            </section>
-        </section>
-
-    </div>
-
-    <main class="container my-4" style="max-width: 1000px;" id="conteudosInicio">
-        <p class="material-tecnico-label mb-3">MATERIAL TÉCNICO</p>
-
-        <article class="card card-material-tecnico shadow-sm mb-4" id="bluetoothconteudo">
-            <img src="src/QABluetooth.png" class="card-img-top"
-                alt="Qualidade do áudio Bluetooth: codecs, transmissão e equipamentos">
-            <div class="card-body p-4">
-                <h1 class="card-title h2 mb-2">Qualidade do áudio Bluetooth: codecs, transmissão e equipamentos</h1>
-                <p class="text-muted mb-4">
-                    <small><strong>Postado em:</strong> 21/11/2026 às 00:00</small>
-                </p>
-
-                <div class="card-text">
-                    <h2 class="h4 mt-3">Como funciona o áudio Bluetooth?</h2>
-                    <p>
-                        O Bluetooth transmite áudio sem a necessidade de cabos, utilizando ondas eletromagnéticas na
-                        faixa
-                        de 2,4 GHz.<br>
-                        Para transmitir uma música, o dispositivo de origem (celular ou computador) codifica e comprime
-                        o
-                        áudio. Os dados são enviados ao fone ou caixa de som, que realiza a decodificação para
-                        reproduzir
-                        o som.<br>
-                        Esse processo utiliza um codec, responsável por codificar e decodificar as informações sonoras.
+                    <h1 class="card-title h2 mb-2">Qualidade do áudio Bluetooth: codecs, transmissão e equipamentos</h1>
+                    <p class="text-muted mb-4">
+                        <small><strong>Postado em:</strong> 21/11/2026 às 00:00</small>
                     </p>
 
-                    <p>
-                        A qualidade da transmissão depende principalmente de:<br>
-                        - Codec utilizado.<br>
-                        - Compatibilidade entre os dispositivos.<br>
-                        - Taxa de transmissão (bitrate).<br>
-                        - Estabilidade da conexão.<br>
-                        - Qualidade do equipamento de reprodução.<br>
-                        O perfil Bluetooth responsável pela transmissão convencional de áudio estéreo é o A2DP (Advanced
-                        Audio Distribution Profile).
-                    </p>
+                    <div class="card-text">
+                        <h2 class="h4 mt-3">Como funciona o áudio Bluetooth?</h2>
+                        <p>
+                            O Bluetooth transmite áudio sem a necessidade de cabos, utilizando ondas eletromagnéticas na
+                            faixa de 2,4 GHz.<br>
+                            Para transmitir uma música, o dispositivo de origem (celular ou computador) codifica e
+                            comprime o áudio. Os dados são enviados ao fone ou caixa de som, que realiza a decodificação
+                            para reproduzir o som.<br>
+                            Esse processo utiliza um codec, responsável por codificar e decodificar as informações
+                            sonoras.
+                        </p>
 
-                    <h2 class="h4 mt-4">Comparação dos principais codecs</h2>
-                    <p>
-                        Os codecs determinam como o áudio será comprimido e transmitido. Cada tecnologia apresenta
-                        características próprias de qualidade, eficiência e compatibilidade.
-                    </p>
+                        <p>
+                            A qualidade da transmissão depende principalmente de:<br>
+                            - Codec utilizado.<br>
+                            - Compatibilidade entre os dispositivos.<br>
+                            - Taxa de transmissão (bitrate).<br>
+                            - Estabilidade da conexão.<br>
+                            - Qualidade do equipamento de reprodução.<br>
+                            O perfil Bluetooth responsável pela transmissão convencional de áudio estéreo é o A2DP
+                            (Advanced Audio Distribution Profile).
+                        </p>
 
-                    <div class="table-responsive my-3">
-                        <table class="table table-bordered align-middle" style="width: 100%;">
-                            <tbody>
-                                <tr class="table-active fw-semibold">
-                                    <td>Codec</td>
-                                    <td>Taxa de transmissão</td>
-                                    <td>Característica</td>
-                                </tr>
-                                <tr>
-                                    <td>SBC</td>
-                                    <td>Variável</td>
-                                    <td>Padrão básico e amplamente compatível</td>
-                                </tr>
-                                <tr>
-                                    <td>AAC</td>
-                                    <td>Variável</td>
-                                    <td>Boa eficiência de compressão</td>
-                                </tr>
-                                <tr>
-                                    <td>aptX</td>
-                                    <td>Até 384 kbps</td>
-                                    <td>Boa qualidade e baixa complexidade</td>
-                                </tr>
-                                <tr>
-                                    <td>aptX HD</td>
-                                    <td>Até 576 kbps</td>
-                                    <td>Suporta áudio de até 24 bits/48 kHz</td>
-                                </tr>
-                                <tr>
-                                    <td>LDAC</td>
-                                    <td>330, 660 ou 990 kbps</td>
-                                    <td>Transmissão em taxas elevadas</td>
-                                </tr>
-                                <tr>
-                                    <td>aptX Lossless</td>
-                                    <td>Até aproximadamente 1.200 kbps</td>
-                                    <td>Pode transmitir áudio de CD sem perdas</td>
-                                </tr>
-                                <tr>
-                                    <td>LC3</td>
-                                    <td>Variável</td>
-                                    <td>Maior eficiência e menor consumo no Bluetooth LE Audio</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h2 class="h4 mt-4">Comparação dos principais codecs</h2>
+                        <p>
+                            Os codecs determinam como o áudio será comprimido e transmitido. Cada tecnologia apresenta
+                            características próprias de qualidade, eficiência e compatibilidade.
+                        </p>
+
+                        <div class="table-responsive my-3">
+                            <table class="table table-bordered align-middle w-100">
+                                <tbody>
+                                    <tr class="table-active fw-semibold">
+                                        <td>Codec</td>
+                                        <td>Taxa de transmissão</td>
+                                        <td>Característica</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SBC</td>
+                                        <td>Variável</td>
+                                        <td>Padrão básico e amplamente compatível</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AAC</td>
+                                        <td>Variável</td>
+                                        <td>Boa eficiência de compressão</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aptX</td>
+                                        <td>Até 384 kbps</td>
+                                        <td>Boa qualidade e baixa complexidade</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aptX HD</td>
+                                        <td>Até 576 kbps</td>
+                                        <td>Suporta áudio de até 24 bits/48 kHz</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LDAC</td>
+                                        <td>330, 660 ou 990 kbps</td>
+                                        <td>Transmissão em taxas elevadas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>aptX Lossless</td>
+                                        <td>Até aproximadamente 1.200 kbps</td>
+                                        <td>Pode transmitir áudio de CD sem perdas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LC3</td>
+                                        <td>Variável</td>
+                                        <td>Maior eficiência e menor consumo no Bluetooth LE Audio</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2 class="h4 mt-4">Principais diferenças:</h2>
+                        <p>
+                            - SBC: possui ampla compatibilidade, sendo o codec obrigatório para áudio A2DP.<br>
+                            - AAC: oferece boa compressão e é bastante utilizado em dispositivos Apple.<br>
+                            - aptX: desenvolvido pela Qualcomm, busca equilibrar qualidade e latência.<br>
+                            - aptX HD: permite maior resolução de áudio, mas ainda utiliza compressão com perdas.<br>
+                            - LDAC: desenvolvido pela Sony, permite taxas de transmissão mais elevadas, chegando a 990
+                            kbps.<br>
+                            - aptX Lossless: pode transmitir áudio equivalente à qualidade de CD sem perdas, em
+                            condições compatíveis.<br>
+                            - LC3: associado ao Bluetooth LE Audio, oferece boa qualidade com menor consumo de dados e
+                            energia.
+                        </p>
+
+                        <h2 class="h4 mt-4">Interferências na transmissão</h2>
+                        <p>
+                            O Bluetooth utiliza a frequência de 2,4 GHz, compartilhada com equipamentos como roteadores
+                            Wi-Fi.<br>
+                            Isso pode provocar:<br>
+                            - Interrupções na reprodução.<br>
+                            - Perda de pacotes.<br>
+                            - Instabilidade na conexão.<br>
+                            - Redução da taxa de transmissão.
+                        </p>
+
+                        <h2 class="h4 mt-4">Equipamentos recomendados</h2>
+                        <div class="equipamentos">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="src/foneBluetooth.jpg" class="card-img" alt="Fones Bluetooth">
+                                    <h5 class="mt-2 mb-1">Fones Bluetooth</h5>
+                                    <p class="card-text">Priorizar modelos com suporte a LDAC, aptX Adaptive ou aptX
+                                        Lossless, bons drivers e processamento de áudio.</p>
+                                    <small class="text-muted">Marcas: Sony, Sennheiser e JBL.</small>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="src/TransmissorBluetooth.jpg" class="card-img"
+                                        alt="Transmissores Bluetooth USB">
+                                    <h5 class="mt-2 mb-1">Transmissores Bluetooth USB</h5>
+                                    <p class="card-text">Permitem transmitir áudio de computadores e outros
+                                        equipamentos. É necessário verificar os codecs suportados e a compatibilidade
+                                        com o fone.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="src/CaixaDeSomBluetooth.jpg" class="card-img"
+                                        alt="Caixas de som Bluetooth">
+                                    <h5 class="mt-2 mb-1">Caixas de som Bluetooth</h5>
+                                    <p class="card-text">Priorizar boa construção acústica, drivers de qualidade,
+                                        estabilidade de conexão e suporte a codecs adequados.</p>
+                                    <small class="text-muted">Marcas: JBL, Sony e Edifier.</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <h2 class="h4 mt-4">Principais diferenças:</h2>
-                    <p>
-                        - SBC: possui ampla compatibilidade, sendo o codec obrigatório para áudio A2DP.<br>
-                        - AAC: oferece boa compressão e é bastante utilizado em dispositivos Apple.<br>
-                        - aptX: desenvolvido pela Qualcomm, busca equilibrar qualidade e latência.<br>
-                        - aptX HD: permite maior resolução de áudio, mas ainda utiliza compressão com perdas.<br>
-                        - LDAC: desenvolvido pela Sony, permite taxas de transmissão mais elevadas, chegando a 990
-                        kbps.<br>
-                        - aptX Lossless: pode transmitir áudio equivalente à qualidade de CD sem perdas, em condições
-                        compatíveis.<br>
-                        - LC3: associado ao Bluetooth LE Audio, oferece boa qualidade com menor consumo de dados e
-                        energia.
-                    </p>
-
-                    <h2 class="h4 mt-4">Interferências na transmissão</h2>
-                    <p>
-                        O Bluetooth utiliza a frequência de 2,4 GHz, compartilhada com equipamentos como roteadores
-                        Wi-Fi.<br>
-                        Isso pode provocar:<br>
-                        - Interrupções na reprodução.<br>
-                        - Perda de pacotes.<br>
-                        - Instabilidade na conexão.<br>
-                        - Redução da taxa de transmissão.
-                    </p>
-
-                    <h2 class="h4 mt-4">Equipamentos recomendados</h2>
-                    <div class="d-flex flex-row flex-wrap justify-content-center gap-3 my-3">
-                        <div class="card" style="width: 18rem;">
+                    <div class="referencias">
+                        <div class="card shadow-sm border-0 rounded-4">
                             <div class="card-body">
-                                <img src="src/foneBluetooth.jpg" class="card-img" alt="Fones Bluetooth">
-                                <h5 class="mt-2 mb-1">Fones Bluetooth</h5>
-                                <p class="card-text">Priorizar modelos com suporte a LDAC, aptX Adaptive ou aptX
-                                    Lossless, bons drivers e processamento de áudio.</p>
-                                <small class="text-muted">Marcas: Sony, Sennheiser e JBL.</small>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <img src="src/TransmissorBluetooth.jpg" class="card-img"
-                                    alt="Transmissores Bluetooth USB">
-                                <h5 class="mt-2 mb-1">Transmissores Bluetooth USB</h5>
-                                <p class="card-text">Permitem transmitir áudio de computadores e outros equipamentos. É
-                                    necessário verificar os codecs suportados e a compatibilidade com o fone.</p>
-                            </div>
-                        </div>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <img src="src/CaixaDeSomBluetooth.jpg" class="card-img" alt="Caixas de som Bluetooth">
-                                <h5 class="mt-2 mb-1">Caixas de som Bluetooth</h5>
-                                <p class="card-text">Priorizar boa construção acústica, drivers de qualidade,
-                                    estabilidade de conexão e suporte a codecs adequados.</p>
-                                <small class="text-muted">Marcas: JBL, Sony e Edifier.</small>
-                            </div>
+                                <h3 class="fw-bold mb-2">
+                                    <i class="bi bi-book me-2 text-primary"></i>
+                                    Referências bibliográficas
+                                </h3>
+                                <p class="text-muted mb-4">
+                                    Fontes utilizadas na elaboração dos nossos conteúdos.
+                                </p>
 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container my-5">
-                    <div class="card shadow-sm border-0 rounded-4">
-                        <div class="card-body p-4">
-                            <h3 class="fw-bold mb-2">
-                                <i class="bi bi-book me-2 text-primary"></i>
-                                Referências bibliográficas
-                            </h3>
-
-                            <p class="text-muted mb-4">
-                                Fontes utilizadas na elaboração dos nossos conteúdos.
-                            </p>
-
-                            <div class="mb-4">
-                                <h5 class="fw-bold text-primary">
-                                    Qualidade do áudio Bluetooth
-                                </h5>
-
+                                <h5 class="fw-bold text-primary">Qualidade do áudio Bluetooth</h5>
                                 <ol class="ps-3">
                                     <li class="mb-3">
                                         ADRIANO, Bruno Tanaka; DIORIO, Gabriel Cristofoletti.
@@ -578,57 +289,241 @@
                                             ESP32.</strong>
                                         UTFPR, 2021.<br>
                                         <a href="https://riut.utfpr.edu.br/jspui/bitstream/1/36445/1/transmissaoaudiosemfioemtemporeal.pdf"
-                                            target="_blank" rel="noopener noreferrer">
-                                            Acessar estudo
-                                        </a>
+                                            target="_blank" rel="noopener noreferrer">Acessar estudo</a>
                                     </li>
-
                                     <li class="mb-3">
                                         BLUETOOTH SIG.
                                         <strong>Performance Characterization of the Low Complexity Communication Codec
                                             (LC3).</strong>
                                         2023.<br>
                                         <a href="https://www.bluetooth.com/wp-content/uploads/2023/07/LC3Characterization_WP.pdf"
-                                            target="_blank" rel="noopener noreferrer">
-                                            Acessar estudo
-                                        </a>
+                                            target="_blank" rel="noopener noreferrer">Acessar estudo</a>
                                     </li>
-
                                     <li class="mb-3">
                                         TRAINOR, David.
                                         <strong>Wireless Transmission of Audio Using Adaptive Lossless Coding.</strong>
                                         Audio Engineering Society, 2009.<br>
                                         <a href="https://aes.org/publications/elibrary/elibrary-page/?id=15068"
-                                            target="_blank" rel="noopener noreferrer">
-                                            Acessar artigo
-                                        </a>
+                                            target="_blank" rel="noopener noreferrer">Acessar artigo</a>
                                     </li>
-
                                     <li>
                                         AFANEH, Mohammad.
                                         <strong>A Technical Overview of LC3.</strong>
                                         Bluetooth SIG, 2020.<br>
                                         <a href="https://www.bluetooth.com/blog/a-technical-overview-of-lc3/"
-                                            target="_blank" rel="noopener noreferrer">
-                                            Acessar artigo
-                                        </a>
+                                            target="_blank" rel="noopener noreferrer">Acessar artigo</a>
                                     </li>
                                 </ol>
                             </div>
-
-                            <hr>
-
                         </div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
+
+            <article class="card card-material-tecnico shadow-sm mb-4" id="sulcoconteudo">
+                <img src="src/AnalogicoDigital.png" class="card-img-top"
+                    alt="Diferenças entre áudio analógico e digital">
+
+                <div class="card-body">
+                    <h1 class="card-title h2 mb-2">Do sulco ao bit: qual é a diferença entre o som analógico e o
+                        digital?</h1>
+
+                    <p class="text-muted mb-4">
+                        <small><strong>Projeto:</strong> Projeto de Extensão BEAT — Do Vinil ao Streaming · Divulgação
+                            científica</small>
+                    </p>
+
+                    <div class="card-text">
+                        <p>
+                            Você já ouviu alguém dizer que “o vinil tem um som mais quente” ou que “o digital é mais
+                            limpo”? Essas frases aparecem em rodas de conversa, em lojas de discos e em fóruns de áudio,
+                            mas por trás delas existe ciência bem concreta. Neste texto, vamos entender como o som é
+                            guardado de duas maneiras muito diferentes, a analógica e a digital, e o que muda (e o que
+                            não muda) quando escutamos música em um disco de vinil ou em um aplicativo de streaming.
+                        </p>
+
+                        <h2 class="h4 mt-3">Antes de tudo: o que é o som?</h2>
+                        <p>
+                            O som é uma vibração que viaja pelo ar em forma de onda. Duas características dessa onda nos
+                            interessam:<br>
+                            - Frequência: quantas vibrações acontecem por segundo, medida em hertz (Hz). Ela define se o
+                            som é grave ou agudo. O ouvido humano percebe, em média, de 20 Hz a 20.000 Hz (20 kHz).<br>
+                            - Amplitude: a intensidade da vibração. Ela define se o som é fraco ou forte, ou seja, o
+                            volume.
+                        </p>
+                        <p>
+                            Para guardar um som, é preciso registrar essa onda de algum jeito. Foi aí que surgiram dois
+                            caminhos.
+                        </p>
+
+                        <h2 class="h4 mt-4">Som analógico: uma cópia contínua da onda</h2>
+                        <p>
+                            A palavra “analógico” vem de analogia. Na gravação analógica, o registro é um “análogo”
+                            físico da onda sonora original. No disco de vinil, a onda vira um relevo microscópico no
+                            sulco, e a agulha, ao percorrê-lo, vibra de forma parecida com o som gravado. Na fita
+                            cassete, a onda vira variações na magnetização da fita.
+                        </p>
+                        <p>
+                            O ponto-chave é que o sinal analógico é contínuo: ele pode assumir qualquer valor, sem
+                            saltos. Pense em uma rampa suave. Durante cerca de um século, esse foi o único jeito prático
+                            de gravar e reproduzir som.
+                        </p>
+                        <p>
+                            A contrapartida é que o meio físico deixa suas marcas. Chiado de fita, estalos, pequenas
+                            oscilações de velocidade do motor e o desgaste do material se misturam ao som. Cada
+                            reprodução de um vinil gasta um pouco o disco, e cada cópia de uma fita carrega o ruído da
+                            anterior.
+                        </p>
+
+                        <h2 class="h4 mt-4">Som digital: a onda transformada em números</h2>
+                        <p>
+                            No som digital, a onda é convertida em números. Isso acontece em duas etapas:<br>
+                            - Amostragem: a amplitude da onda é medida em intervalos de tempo muito pequenos e
+                            regulares. Em um CD, são 44.100 medições por segundo.<br>
+                            - Quantização: cada medição é arredondada para o valor mais próximo de uma escala finita,
+                            guardado em bits. Com 16 bits, existem 65.536 níveis possíveis.
+                        </p>
+                        <p>
+                            Em vez de uma rampa, imagine uma escada com degraus tão pequenos que o ouvido não percebe.
+                            Ou pense em um filme: ele é feito de quadros separados, mas, passando rápido, nossos olhos
+                            veem movimento contínuo.
+                        </p>
+                        <p>
+                            Pode parecer que “picotar” o som faz perder informação, mas existe um resultado matemático,
+                            o teorema de Nyquist–Shannon, que diz que uma onda pode ser reconstruída com exatidão se for
+                            amostrada a uma taxa maior que o dobro da sua maior frequência. Como o ouvido humano vai até
+                            cerca de 20 kHz, os 44,1 kHz do CD cobrem toda a faixa audível.
+                        </p>
+                        <p>
+                            Na hora de ouvir, o caminho se inverte: um componente chamado conversor digital-analógico
+                            (DAC) transforma os números de volta em sinal elétrico, que move o alto-falante ou o fone.
+                            Ou seja, o som que chega ao nosso ouvido é sempre analógico. O que muda é como ele foi
+                            guardado e transportado até ali.
+                        </p>
+
+                        <h2 class="h4 mt-4">Frente a frente</h2>
+                        <p>
+                            - Natureza do sinal: o analógico é contínuo; o digital é discreto (feito de amostras).<br>
+                            - Ruído: no analógico, o ruído vem do meio físico (chiado, estalos, desgaste). No digital,
+                            existe um pequeno ruído de quantização, que diminui conforme aumentamos os bits: cada bit
+                            a mais acrescenta cerca de 6 dB de faixa dinâmica.<br>
+                            - Faixa dinâmica (diferença entre o som mais fraco e o mais forte que o sistema consegue
+                            representar): um sistema de 16 bits chega a cerca de 96 dB em teoria. Medições apontam algo
+                            entre 60 e 70 dB para o vinil e entre 50 e 75 dB para fitas cassete de consumo.<br>
+                            - Cópias: copiar uma fita analógica acumula ruído a cada geração. Uma cópia digital pode
+                            ser idêntica ao original, sem perda de qualidade.<br>
+                            - Durabilidade: discos de vinil e fitas se desgastam com o uso, e mídias digitais como o
+                            CD também envelhecem. Já um arquivo digital pode ser copiado várias vezes para
+                            preservá-lo.<br>
+                            - Flexibilidade: o som digital pode ser editado, processado por computador (o chamado
+                            Processamento Digital de Sinais), compactado e enviado pela internet. Foi isso que abriu
+                            caminho para o streaming.
+                        </p>
+
+                        <h2 class="h4 mt-4">Então, qual soa melhor?</h2>
+                        <p>
+                            A resposta honesta é: depende. Do ponto de vista técnico, o digital tem vantagens que podem
+                            ser medidas, como baixo ruído, ausência de desgaste na leitura e cópias fiéis. Defensores do
+                            digital costumam citar testes cegos, nos quais os ouvintes não sabem qual formato estão
+                            escutando, para argumentar que muitas diferenças percebidas vêm de expectativa e das
+                            imperfeições do analógico.
+                        </p>
+                        <p>
+                            Já quem prefere o analógico costuma descrever um som mais “rico”, “natural” ou “quente”.
+                            Parte dessa sensação pode estar justamente nas pequenas distorções e saturações próprias
+                            de discos e fitas, que muita gente acha agradáveis. Além disso, ouvir vinil é uma
+                            experiência: tirar o disco da capa, apoiar a agulha, virar o lado. Esse lado cultural e
+                            afetivo pesa muito, e não há nada de errado nisso.
+                        </p>
+                        <p>
+                            Outro ponto importante: o formato é só uma parte da história. A qualidade da gravação,
+                            da mixagem, da masterização e do equipamento de reprodução costuma pesar tanto quanto saber
+                            se o som é analógico ou digital. Hoje, aliás, os dois mundos se misturam, e muitas gravações
+                            passam por etapas analógicas e digitais antes de chegar até nós.
+                        </p>
+                        <p>
+                            E há um detalhe: o digital que ouvimos no streaming geralmente passa por compressão de
+                            dados, que reduz o tamanho do arquivo descartando informações menos perceptíveis. Esse é o
+                            assunto de um dos próximos textos do projeto.
+                        </p>
+
+                        <h2 class="h4 mt-4">Para pensar</h2>
+                        <p>
+                            - Se o som que chega ao nosso ouvido é sempre analógico, onde exatamente está a diferença
+                            entre os dois formatos?<br>
+                            - Por que será que o vinil voltou a ganhar espaço mesmo com tanta praticidade no
+                            digital?<br>
+                            - O que se perde (e o que se ganha) quando trocamos um disco físico por uma playlist?
+                        </p>
+                    </div>
+
+                    <div class="referencias">
+                        <div class="card shadow-sm border-0 rounded-4">
+                            <div class="card-body">
+                                <h3 class="fw-bold mb-2">
+                                    <i class="bi bi-book me-2 text-primary"></i>
+                                    Referências bibliográficas
+                                </h3>
+                                <p class="text-muted mb-4">
+                                    Fontes utilizadas na elaboração dos nossos conteúdos.
+                                </p>
+
+                                <h5 class="fw-bold text-primary">
+                                    Do sulco ao bit: qual é a diferença entre o som analógico e o digital?
+                                </h5>
+                                <ol class="ps-3">
+                                    <li class="mb-3">
+                                        MOON AUDIO.
+                                        <strong>Analog vs Digital Music: The Enduring Appeal of Analog Sound.</strong><br>
+                                        <a href="https://www.moon-audio.com/blogs/expert-advice/analog-vs-digital-which-is-better"
+                                            target="_blank" rel="noopener noreferrer">Acessar artigo</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        MOON AUDIO.
+                                        <strong>Vinyl vs. Streaming: The Debate Over Audio Quality.</strong><br>
+                                        <a href="https://www.moon-audio.com/blogs/expert-advice/vinyl-vs-streaming-the-debate-over-audio-quality"
+                                            target="_blank" rel="noopener noreferrer">Acessar artigo</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        ADORAMA.
+                                        <strong>Analog vs Digital Audio: What’s the Difference?</strong><br>
+                                        <a href="https://www.adorama.com/alc/analog-vs-digital-audio" target="_blank"
+                                            rel="noopener noreferrer">Acessar artigo</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        WIKIPEDIA.
+                                        <strong>Comparison of analog and digital recording.</strong><br>
+                                        <a href="https://en.wikipedia.org/wiki/Comparison_of_analog_and_digital_recording"
+                                            target="_blank" rel="noopener noreferrer">Acessar artigo</a>
+                                    </li>
+                                    <li class="mb-3">
+                                        HARDWARE.COM.BR.
+                                        <strong>Fatiando o som.</strong><br>
+                                        <a href="https://www.hardware.com.br/?p=99276" target="_blank"
+                                            rel="noopener noreferrer">Acessar artigo</a>
+                                    </li>
+                                    <li>
+                                        HD PRO (MEDIUM).
+                                        <strong>The “Analog vs. Digital” Debate.</strong><br>
+                                        <a href="https://medium.com/hd-pro/which-is-better-analog-vs-digital-806449f7147d"
+                                            target="_blank" rel="noopener noreferrer">Acessar artigo</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
     </main>
 
+    <footer class="rodape">
+        <div class="container-site">
+            <p class="mb-0">Projeto de Extensão BEAT — Do Vinil ao Streaming</p>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
 </body>
 
 </html>
